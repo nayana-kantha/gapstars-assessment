@@ -1,0 +1,25 @@
+<div
+  class="grid grid-cols-1 md:grid-cols-3 grid-rows-auto gap-4 auto-rows-auto"
+>
+  @for (item of cardData() | keyvalue; track $index) {
+  <div class="flex flex-col p-4 bg-white rounded-lg">
+    <h3 class="text-lg font-semibold flex justify-between pb-4">
+      {{ item.key | titlecase }}
+      <span class="font-normal text-gray-500">{{ item.value.length }}</span>
+    </h3>
+    <ul>
+      <li class="flex justify-between pb-2 font-normal text-gray-500 pb-2 border-b border-gray-200 mb-3 text-xs">
+        Name <span>Total jobs available</span>
+      </li>
+      @for (company of item.value; track $index) {
+      <li class="flex justify-between pb-4">
+        <span class="flex items-center"
+          ><img src="{{ company.images }}" alt="" class="mr-2"/> {{ company.name }}</span
+        >
+        <span>{{ company.total_jobs_available }}</span>
+      </li>
+      }
+    </ul>
+  </div>
+  }
+</div>
